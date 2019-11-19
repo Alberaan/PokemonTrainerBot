@@ -47,7 +47,7 @@ def sendData(chat_id, bot, response):
     for line in response.split("\n"):
         if "<botonefectividad>" in line:
             listBotonQuiz.append(line.split(">")[1])
-        if "<botontipo>" in line:
+        elif "<botontipo>" in line:
             listBotonTipo.append(line.split(">")[1])
         else:
             textToSend += line + "\n"
