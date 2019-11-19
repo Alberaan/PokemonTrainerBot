@@ -12,7 +12,7 @@ def renderRespuestaTipo(my_keyboard, line):
     if len(line) <1:
         return
     
-    my_keyboard.append([InlineKeyboardButton(text=str(line.split(" ")[3]), callback_data=line)])
+    my_keyboard.append(InlineKeyboardButton(text=str(line.split(" ")[3]), callback_data=line))
     
     return my_keyboard
     
