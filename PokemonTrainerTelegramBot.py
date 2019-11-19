@@ -23,7 +23,7 @@ def renderBotonesQuiz(my_keyboard, lines):
         buttons.append(InlineKeyboardButton(text=str(line.split(" ")[3]), callback_data=line))
     
     my_keyboard.append(buttons)
-    buttons.append(InlineKeyboardButton(text=str("<<Home", callback_data="/start"))
+    buttons.append(InlineKeyboardButton(text="<<Home", callback_data="/start"))
     
     return my_keyboard
 
@@ -42,7 +42,7 @@ def renderBotonesTipo(my_keyboard, lines):
             cont += 1
             
     my_keyboard.append(buttons)
-    buttons.append(InlineKeyboardButton(text=str("<<Home", callback_data="/start"))
+    buttons.append(InlineKeyboardButton(text="<<Home", callback_data="/start"))
     
     return my_keyboard  
 
