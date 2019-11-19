@@ -25,8 +25,8 @@ def sendData(chat_id, bot, response):
     textToSend = ""
     
     for line in response.split("\n"):
-        if '"TipoMensaje" : "RespuestaTipo"' in line:
-            my_keyboard = renderRespuestaTipo(my_keyboard, line)
+        if "<botonefectividad>" in line:
+            my_keyboard = renderRespuestaTipo(my_keyboard, line.split[">"][1])
         else:
             textToSend += line + "\n"
     
