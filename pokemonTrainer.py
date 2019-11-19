@@ -62,7 +62,7 @@ def textoPregunta(pregunta):
         texto += '{"TipoMensaje" : "RespuestaTipo", '
         texto += '"Atacante" : "' + pregunta["Atacante"] + '", '
         texto += '"Defensor" : "' + pregunta["Defensor"] + '", '
-        texto += '"Elegida" ": ' + str(opcion) + "}\n"
+        texto += '"Elegida" : ' + str(opcion) + "}\n"
 
     return texto
     
