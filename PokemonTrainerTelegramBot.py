@@ -29,6 +29,7 @@ def renderBotonesTipo(my_keyboard, lines):
         if cont >= 3:
             my_keyboard.append(buttons)
             cont = 0
+            buttons = []
         else:
             cont += 1
     
