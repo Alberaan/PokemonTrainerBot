@@ -10,7 +10,7 @@ import re
 
 def printHelp():
     texto = "Bienvenido al entrenador de entrenadores Pokémon. Estos son los ejercicios disponibles:\n"
-    texto += "<botonayuda>Quiz /evaluar\n"
+    texto += "<botonayuda>Quiz /quiz\n"
     texto += "<botonayuda>Efectividades /tipos\n"
     
     return texto
@@ -114,7 +114,9 @@ def processCommand(text):
     command = text.split(" ")[0].lower()
     print(command)
     if command == "/start":
-        return printHelp()        
+        return printHelp()
+    if "/quiz" in command:
+        return hacerPregunta()
     if "/evaluar" in command:
         return procesarRespuesta(text.replace("/evaluar ", ""))    
     if "/tipos" in command:
