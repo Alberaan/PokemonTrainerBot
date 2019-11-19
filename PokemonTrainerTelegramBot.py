@@ -32,6 +32,8 @@ def renderBotonesTipo(my_keyboard, lines):
             buttons = []
         else:
             cont += 1
+    for i in range(0, len(buttons):
+        buttons.append(InlineKeyboardButton(text="", callback_data=""))
     my_keyboard.append(buttons)
     
     return my_keyboard  
