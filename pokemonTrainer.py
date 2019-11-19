@@ -1,13 +1,15 @@
 from random import randint
 
+types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
+
 def getTypeByIndex(myIndex):
 
-    types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
+    #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
     return types[myIndex]
 
 def getIndexByType(myType):
 
-    types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
+    #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
     return types.index(myType)
 
 def getEffectiveness(attacker, defender):
@@ -34,6 +36,14 @@ def getEffectiveness(attacker, defender):
 
     return effectiveness[attacker][defender]
 
+def getTypes():
+    texto = ""
+    
+    for type in types:
+        texto += "<botontipo>" + type
+    
+    return texto
+        
 def getRandomType():
     return getTypeByIndex(randint(0, 17))
 
