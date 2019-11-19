@@ -51,7 +51,6 @@ def renderBotonesAyuda(my_keyboard, lines):
     buttons = []
     
     for line in lines:
-        print(line)
         buttons.append(InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1]))
             
     my_keyboard.append(buttons)
@@ -86,7 +85,6 @@ def sendData(chat_id, bot, response):
         my_keyboard =  renderBotonesTipo(my_keyboard, listBotonTipo)
     
     if len(listBotonAyuda) > 0:
-        print(textToSend)
         my_keyboard =  renderBotonesAyuda(my_keyboard, listBotonAyuda)
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=my_keyboard)
