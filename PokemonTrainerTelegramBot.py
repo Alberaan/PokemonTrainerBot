@@ -8,6 +8,13 @@ from telepot.loop import OrderedWebhook
 from pokemonTrainer import *
 import re
 
+def printHelp():
+    texto = "Bienvenido al entrenador de entrenadores Pokémon. Estos son los ejercicios disponibles: "
+    texto += "<botonayuda>Quiz /evaluar\n"
+    texto += "<botonayuda>Efectividades /tipos\n"
+    
+    return texto
+
 def renderBotonesQuiz(my_keyboard, lines):
     if len(lines) <1:
         return
@@ -37,12 +44,26 @@ def renderBotonesTipo(my_keyboard, lines):
     
     return my_keyboard  
 
+def renderBotonesAyuda(my_keyboard, lines):
+    if len(lines) <1:
+        return
+    buttons = []
+    cont = 0
+    for line in lines:
+        buttons.append(InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1]))
+            
+    my_keyboard.append(buttons)
+    
+    return my_keyboard  
+
 def sendData(chat_id, bot, response):
     if bot == None:
         return
     
     listBotonQuiz = []
     listBotonTipo = []
+    listBotonAyuda = []
+    
     my_keyboard = []
     textToSend = ""
     
@@ -51,6 +72,8 @@ def sendData(chat_id, bot, response):
             listBotonQuiz.append(line.split(">")[1])
         elif "<botontipo>" in line:
             listBotonTipo.append(line.split(">")[1])
+        elif "<botonayuda>" in line:
+            listBotonAyuda.append(line.split(">")[1])
         else:
             textToSend += line + "\n"
     
@@ -59,6 +82,9 @@ def sendData(chat_id, bot, response):
     
     if len(listBotonTipo) > 0:
         my_keyboard =  renderBotonesTipo(my_keyboard, listBotonTipo)
+    
+    if len(listBotonAyuda) > 0:
+        my_keyboard =  renderBotonesAyuda(my_keyboard, listBotonAyuda)
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=my_keyboard)
     bot.sendMessage(chat_id, textToSend, reply_markup=keyboard)
@@ -86,15 +112,17 @@ def on_chosen_inline_result(msg):
 def processCommand(text):
     command = text.split(" ")[0].lower()
     if command == "/start":
-        return hacerPregunta()        
+        return printHelp()        
     if "/evaluar" in command:
         return procesarRespuesta(text.replace("/evaluar ", ""))    
     if "/tipos" in command:
         return getTypes()
     if "/efectividades" in command:
         return getEfectividadesByTipo(text.replace("/efectividades ", ""))
+    if "/help" in command:
+        return printHelp()
     else:
-        return "Comando desconocido"
+        return printHelp()
 
 # Main starts here
 token = str(os.environ["telegram_token"])
