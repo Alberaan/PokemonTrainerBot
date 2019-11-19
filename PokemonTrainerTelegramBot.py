@@ -39,12 +39,13 @@ def sendData(chat_id, bot, response):
         return
     
     listBotonEfectividad = []
+    listBotonTipo = []
     my_keyboard = []
     textToSend = ""
     
     for line in response.split("\n"):
         if "<botonefectividad>" in line:
-            listBotonEfectividad.append(line.split(">")[1])
+            listBotonTipo.append(line.split(">")[1])
         if "<botontipo>" in line:
             listBotonEfectividad.append(line.split(">")[1])
         else:
@@ -52,6 +53,9 @@ def sendData(chat_id, bot, response):
     
     if len(listBotonEfectividad) > 0:
         my_keyboard =  renderRespuestaTipo(my_keyboard, listBotonEfectividad)
+    
+    if len(listBotonTipo) > 0:
+        my_keyboard =  renderEfectividadesTipo(my_keyboard, listBotonTipo)
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=my_keyboard)
     bot.sendMessage(chat_id, textToSend, reply_markup=keyboard)
