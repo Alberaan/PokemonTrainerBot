@@ -12,7 +12,6 @@ def renderRespuestaTipo(my_keyboard, line):
     if len(line) <1:
         return
     
-    print(line)
     my_keyboard.append([InlineKeyboardButton(text=str(line.split(" ")[3]), callback_data=line)])
     
     return my_keyboard
@@ -26,7 +25,6 @@ def sendData(chat_id, bot, response):
     
     for line in response.split("\n"):
         if "<botonefectividad>" in line:
-            print(type(line))
             my_keyboard = renderRespuestaTipo(my_keyboard, line.split(">")[1])
         else:
             textToSend += line + "\n"
@@ -58,7 +56,7 @@ def processCommand(text):
     command = text.split(" ")[0].lower()
     if command == "/start":
         return hacerPregunta()        
-    if '"TipoMensaje" : "RespuestaTipo"' in command:
+    if "/evaluar" in command:
         return procesarRespuesta(text)        
     else:
         return "Comando desconocido"
