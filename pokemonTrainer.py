@@ -1,5 +1,4 @@
 from random import randint
-import json
 
 def getTypeByIndex(myIndex):
 
@@ -59,19 +58,17 @@ def textoPregunta(pregunta):
     texto += pregunta["Atacante"] + " ataca a " + pregunta["Defensor"] + ". ¿Cuál es la efectividad?:\n"
     
     for opcion in pregunta["Opciones"]:
-        texto += '{"TipoMensaje" : "RespuestaTipo", '
-        texto += '"Atacante" : "' + pregunta["Atacante"] + '", '
-        texto += '"Defensor" : "' + pregunta["Defensor"] + '", '
-        texto += '"Elegida" : ' + str(opcion) + "}\n"
+        texto += '/evaluar '
+        texto += pregunta["Atacante"] + ' '
+        texto += pregunta["Defensor"] + ' '
+        texto += str(opcion) + "\n"
 
     return texto
     
-
 def procesarRespuesta(texto):
-    respuesta = json.loads(texto)
-    atacante = respuesta["Atacante"]
-    defensor = respuesta["Defensor"]
-    elegida = respuesta["Elegida"]
+    atacante = texto.split(" ")[0]
+    defensor = texto.split(" ")[1]
+    elegida = texto.split(" ")[2]
 
     efectividad = getEffectiveness(getIndexByType(atacante), getIndexByType(defensor))
 
