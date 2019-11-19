@@ -85,7 +85,7 @@ def sendData(chat_id, bot, response):
     if len(listBotonTipo) > 0:
         my_keyboard =  renderBotonesTipo(my_keyboard, listBotonTipo)
     
-    if len(listBotonAyuda) == 0;
+    if len(listBotonAyuda) == 0:
         my_keyboard.append([InlineKeyboardButton(text="<<Home", callback_data="/start")])
         
     if len(listBotonAyuda) > 0:
