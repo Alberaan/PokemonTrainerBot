@@ -58,7 +58,7 @@ def textoPregunta(pregunta):
     texto += pregunta["Atacante"] + " ataca a " + pregunta["Defensor"] + ". ¿Cuál es la efectividad?:\n"
     
     for opcion in pregunta["Opciones"]:
-        texto += '/evaluar '
+        texto += '<botonefectividad>/evaluar '
         texto += pregunta["Atacante"] + ' '
         texto += pregunta["Defensor"] + ' '
         texto += str(opcion) + "\n"
