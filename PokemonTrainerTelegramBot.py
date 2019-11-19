@@ -18,7 +18,22 @@ def renderRespuestaTipo(my_keyboard, lines):
     my_keyboard.append(buttons)
     
     return my_keyboard
+
+def renderEfectividadesTipo(my_keyboard, lines):
+    if len(lines) <1:
+        return
+    buttons = []
+    cont = 0
+    for line in lines:
+        buttons.append(InlineKeyboardButton(text=str(line.split(" ")[1]), callback_data=line))
+        if cont >= 3:
+            my_keyboard.append(buttons)
+            cont = 0
+        else:
+            cont += 1
     
+    return my_keyboard  
+
 def sendData(chat_id, bot, response):
     if bot == None:
         return
@@ -30,7 +45,8 @@ def sendData(chat_id, bot, response):
     for line in response.split("\n"):
         if "<botonefectividad>" in line:
             listBotonEfectividad.append(line.split(">")[1])
-            #my_keyboard = renderRespuestaTipo(my_keyboard, line.split(">")[1])
+        if "<botontipo>" in line:
+            listBotonEfectividad.append(line.split(">")[1])
         else:
             textToSend += line + "\n"
     
