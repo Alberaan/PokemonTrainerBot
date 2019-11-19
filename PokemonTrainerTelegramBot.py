@@ -7,15 +7,13 @@ from flask import Flask, request
 from telepot.loop import OrderedWebhook
 from pokemonTrainer import *
 import re
-import json
 
 def renderRespuestaTipo(my_keyboard, line):
     if len(line) <1:
         return
     
     print(line)
-    respuestaTipo = json.loads(line)
-    my_keyboard.append([InlineKeyboardButton(text=str(respuestaTipo["Elegida"]), callback_data=line)])
+    my_keyboard.append([InlineKeyboardButton(text=str(line.split(" ")[3]), callback_data=line)])
     
     return my_keyboard
     
