@@ -37,7 +37,7 @@ def getEffectiveness(attacker, defender):
     return effectiveness[attacker][defender]
 
 def getTypes():
-    texto = ""
+    texto = "Elige un tipo de Pokémon"
     
     for type in types:
         texto += "<botontipo>/efectividades " + type + "\n"
