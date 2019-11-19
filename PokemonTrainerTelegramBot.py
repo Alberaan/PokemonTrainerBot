@@ -67,7 +67,9 @@ def processCommand(text):
     if "/evaluar" in command:
         return procesarRespuesta(text.replace("/evaluar ", ""))    
     if "/tipos" in command:
-        return getTypes(text.replace("/tipos ", ""))
+        return getTypes()
+    if "/efectividades" in command:
+        return "trabajando en ello"
     else:
         return "Comando desconocido"
 
