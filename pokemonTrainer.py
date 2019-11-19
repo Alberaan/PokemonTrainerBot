@@ -1,0 +1,81 @@
+from random import randint
+import json
+
+def getTypeByIndex(myIndex):
+
+    types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
+    return types[myIndex]
+
+def getIndexByType(myType):
+
+    types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
+    return types.index(myType)
+
+def getEffectiveness(attacker, defender):
+    effectiveness =[
+        [0.5, 0.5, 1, 1, 0.5, 1, 0.5, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
+        [1, 0.5, 1, 0.5, 1, 1, 2, 1, 1, 1, 1, 0.5, 1, 2, 1, 2, 1, 1],
+        [0.5, 1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 0.5, 1, 2, 2, 1, 2, 1, 0.5, 0.5],
+        [0.5, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 2, 1, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 0, 1, 2],
+        [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, 1, 2, 1, 0.5, 1, 1, 1],
+        [2, 0.5, 2, 0.5, 1, 1, 0.5, 1, 2, 1, 1, 2, 1, 0.5, 1, 1, 1, 1],
+        [0.5, 1, 1, 2, 1, 1, 0.5, 1, 1, 2, 1, 1, 1, 1, 2, 1, 0.5, 1],
+        [0.5, 0.5, 1, 2, 1, 1, 0.5, 1, 0.5, 1, 1, 2, 1, 1, 1, 2, 1, 2],
+        [2, 1, 0.5, 1, 1, 0, 1, 0.5, 2, 1, 2, 1, 0.5, 2, 2, 1, 0.5, 0.5],
+        [0.5, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 1],
+        [0.5, 2, 0.5, 0.5, 1, 1, 0.5, 1, 1, 1, 1, 0.5, 1, 2, 1, 2, 0.5, 0.5],
+        [0.5, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 0.5, 1, 0, 1, 2, 1],
+        [0.5, 1, 2, 1, 1, 1, 2, 1, 2, 0.5, 1, 1, 1, 1, 1, 0.5, 1, 2],
+        [1, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 1, 1, 2, 1, 0.5, 1, 1, 1],
+        [2, 1, 0.5, 1, 2, 1, 2, 1, 1, 1, 1, 0.5, 1, 2, 1, 1, 2, 0],
+        [0, 1, 1, 1, 1, 0.5, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 1],
+        [0.5, 1, 2, 1, 0.5, 1, 1, 1, 1, 2, 1, 2, 1, 0.5, 1, 1, 1, 1]
+    ]
+
+    return effectiveness[attacker][defender]
+
+def getRandomType():
+    return getTypeByIndex(randint(0, 17))
+
+def hacerPregunta():
+    return textoPregunta(crearPregunta())
+
+def crearPregunta():
+    atacante = getRandomType()
+    defensor = getRandomType()
+
+    pregunta = {"Atacante" : atacante,
+                "Defensor" : defensor,
+                "Opciones" : [0, 0.5, 1, 2]
+    }
+
+    return pregunta
+                
+
+def textoPregunta(pregunta):
+    texto = ""
+
+    texto += pregunta["Atacante"] + " ataca a " + pregunta["Defensor"] + ". ¿Cuál es la efectividad?:\n"
+    
+    for opcion in pregunta["Opciones"]:
+        texto += '{"TipoMensaje" : "RespuestaTipo", '
+        texto += '"Atacante" : "' + pregunta["Atacante"] + '", '
+        texto += '"Defensor" : "' + pregunta["Defensor"] + '", '
+        texto += '"Elegida" ": ' + str(opcion) + "}\n"
+
+    return texto
+    
+
+def procesarRespuesta(texto):
+    respuesta = json.loads(texto)
+    atacante = respuesta["Atacante"]
+    defensor = respuesta["Defensor"]
+    elegida = respuesta["Elegida"]
+
+    efectividad = getEffectiveness(getIndexByType(atacante), getIndexByType(defensor))
+
+    if str(efectividad) == str(elegida):
+        return "Correcto!\n" + hacerPregunta()
+    else:
+        return "Error, la efectividad es " + str(efectividad) + "\n" + hacerPregunta()
