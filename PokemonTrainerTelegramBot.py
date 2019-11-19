@@ -57,7 +57,7 @@ def processCommand(text):
     if command == "/start":
         return hacerPregunta()        
     if "/evaluar" in command:
-        return procesarRespuesta(text)        
+        return procesarRespuesta(text.replace("/evaluar ", "")        
     else:
         return "Comando desconocido"
 
