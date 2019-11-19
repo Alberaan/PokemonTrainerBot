@@ -37,10 +37,10 @@ def getEffectiveness(attacker, defender):
     return effectiveness[attacker][defender]
 
 def getTypes():
-    texto = "/efectividades"
+    texto = ""
     
     for type in types:
-        texto += "<botontipo>" + type + "\n"
+        texto += "<botontipo>/efectividades " + type + "\n"
     
     return texto
         
