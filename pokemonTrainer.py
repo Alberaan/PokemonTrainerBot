@@ -1,19 +1,7 @@
 from random import randint
 
 types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
-
-def getTypeByIndex(myIndex):
-
-    #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
-    return types[myIndex]
-
-def getIndexByType(myType):
-
-    #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
-    return types.index(myType)
-
-def getEffectiveness(attacker, defender):
-    effectiveness =[
+    tablaEfectividades =[
         [0.5, 0.5, 1, 1, 0.5, 1, 0.5, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
         [1, 0.5, 1, 0.5, 1, 1, 2, 1, 1, 1, 1, 0.5, 1, 2, 1, 2, 1, 1],
         [0.5, 1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 0.5, 1, 2, 2, 1, 2, 1, 0.5, 0.5],
@@ -33,9 +21,33 @@ def getEffectiveness(attacker, defender):
         [0, 1, 1, 1, 1, 0.5, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 1],
         [0.5, 1, 2, 1, 0.5, 1, 1, 1, 1, 2, 1, 2, 1, 0.5, 1, 1, 1, 1]
     ]
+    
+def getTypeByIndex(myIndex):
 
-    return effectiveness[attacker][defender]
+    #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
+    return types[myIndex]
 
+def getIndexByType(myType):
+
+    #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
+    return types.index(myType)
+
+def getEffectiveness(attacker, defender):
+    return tablaEfectividades[attacker][defender]
+
+def getEfectividadesByTipo(tipo):
+    texto = "Las efectividades de este tipo de Pokémon son:\n"
+    indexTipo = getIndexByType(tipo)
+    efectividadesTipo = tablaEfectividades[indexTipo]
+    
+    cont = 0
+    for tipoDefensor in efectividadesTipo:
+        if tipoDefensor != 1:
+            Defensor = getTypeByIndex(cont)
+            texto += Defensor + ": " + tipoDefensor + "\n"
+            
+    return texto
+    
 def getTypes():
     texto = "Elige un tipo de Pokémon:\n"
     
