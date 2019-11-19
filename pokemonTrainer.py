@@ -43,6 +43,7 @@ def getEfectividadesByTipo(tipo):
     cont = 0
     for tipoDefensor in efectividadesTipo:
         if tipoDefensor != 1:
+            print(cont)
             Defensor = getTypeByIndex(cont)
             texto += Defensor + ": " + str(tipoDefensor) + "\n"
         cont += 1
