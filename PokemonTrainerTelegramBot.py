@@ -112,6 +112,7 @@ def on_chosen_inline_result(msg):
 
 def processCommand(text):
     command = text.split(" ")[0].lower()
+    print(command)
     if command == "/start":
         return printHelp()        
     if "/evaluar" in command:
