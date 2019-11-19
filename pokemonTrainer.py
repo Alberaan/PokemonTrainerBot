@@ -36,7 +36,7 @@ def getEffectiveness(attacker, defender):
     return tablaEfectividades[attacker][defender]
 
 def getEfectividadesByTipo(tipo):
-    texto = "Las efectividades de este tipo de Pokémon son:\n"
+    texto = "Las efectividades de " + tipo + " son:\n"
     indexTipo = getIndexByType(tipo)
     efectividadesAtacante = tablaEfectividades[indexTipo]
     
