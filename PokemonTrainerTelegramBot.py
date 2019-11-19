@@ -90,7 +90,7 @@ def processCommand(text):
     if "/tipos" in command:
         return getTypes()
     if "/efectividades" in command:
-        return "trabajando en ello"
+        return getEfectividadesByTipo(text.replace("/efectividades", ""))
     else:
         return "Comando desconocido"
 
