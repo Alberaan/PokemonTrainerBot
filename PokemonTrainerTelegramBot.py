@@ -12,7 +12,8 @@ import json
 def renderRespuestaTipo(my_keyboard, line):
     if len(line) <1:
         return
-     
+    
+    print(line)
     respuestaTipo = json.loads(line)
     my_keyboard.append([InlineKeyboardButton(text=str(respuestaTipo["Elegida"]), callback_data=line)])
     
