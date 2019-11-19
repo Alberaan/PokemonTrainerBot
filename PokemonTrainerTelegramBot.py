@@ -57,7 +57,7 @@ def on_chosen_inline_result(msg):
 def processCommand(text):
     command = text.split(" ")[0].lower()
     if command == "/start":
-        return hacerPregunta(text)        
+        return hacerPregunta()        
     if '"TipoMensaje" : "RespuestaTipo"' in command:
         return procesarRespuesta(text)        
     else:
