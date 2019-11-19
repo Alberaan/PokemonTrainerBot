@@ -65,7 +65,6 @@ def processCommand(text):
 
 # Main starts here
 token = str(os.environ["telegram_token"])
-myChat_id = int(os.environ["telegram_chat_id"])
 bot = telepot.Bot(token) # Bot is created from the telepot class
 app = Flask(__name__)
 URL = str(os.environ["telegram_url"])
