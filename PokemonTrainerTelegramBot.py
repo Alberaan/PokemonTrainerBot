@@ -9,7 +9,7 @@ from pokemonTrainer import *
 import re
 
 def printHelp():
-    texto = "Bienvenido al entrenador de entrenadores Pokémon. Estos son los ejercicios disponibles: "
+    texto = "Bienvenido al entrenador de entrenadores Pokémon. Estos son los ejercicios disponibles:\n"
     texto += "<botonayuda>Quiz /evaluar\n"
     texto += "<botonayuda>Efectividades /tipos\n"
     
@@ -47,9 +47,11 @@ def renderBotonesTipo(my_keyboard, lines):
 def renderBotonesAyuda(my_keyboard, lines):
     if len(lines) <1:
         return
+    
     buttons = []
-    cont = 0
+    
     for line in lines:
+        print(line)
         buttons.append(InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1]))
             
     my_keyboard.append(buttons)
