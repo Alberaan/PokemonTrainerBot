@@ -41,7 +41,7 @@ def on_callback_query(msg):
 
 def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
-    if content_type == 'text' and chat_id == myChat_id:
+    if content_type == 'text':
         response = processCommand(msg["text"])
     else:
         response = "error"
