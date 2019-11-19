@@ -8,26 +8,29 @@ from telepot.loop import OrderedWebhook
 from pokemonTrainer import *
 import re
 
-def renderRespuestaTipo(my_keyboard, line):
-    if len(line) <1:
+def renderRespuestaTipo(my_keyboard, lines):
+    if len(lines) <1:
         return
-    
-    my_keyboard.append(InlineKeyboardButton(text=str(line.split(" ")[3]), callback_data=line))
+    my_keyboard.append([InlineKeyboardButton(text=str(line.split(" ")[3]), callback_data=line)])
     
     return my_keyboard
     
 def sendData(chat_id, bot, response):
     if bot == None:
         return
-    
+    listBotonEfectividad = []
     my_keyboard = []
     textToSend = ""
     
     for line in response.split("\n"):
         if "<botonefectividad>" in line:
-            my_keyboard = renderRespuestaTipo(my_keyboard, line.split(">")[1])
+            listBotonEfectividad.append(line.split(">")[1])
+            #my_keyboard = renderRespuestaTipo(my_keyboard, line.split(">")[1])
         else:
             textToSend += line + "\n"
+    
+    if len(listBotonEfectividad) > 0:
+        my_keyboard = listBotonEfectividad
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=my_keyboard)
     bot.sendMessage(chat_id, textToSend, reply_markup=keyboard)
