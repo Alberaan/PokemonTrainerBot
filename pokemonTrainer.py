@@ -57,7 +57,7 @@ def get_stats(chat_id):
             text += getTypeByIndex(cont) + ": " + stat + "\n"
         cont +=1
     text += "\nTu mejor es: " + maxType +"\nTu peor es: "+ minType + "\n"
-    text += "Porcentaje de aciertos: " + str(totalPositivos/total*100) + "\n"
+    text += "Porcentaje de aciertos: " + str(totalPositives/total*100) + "\n"
     return text
     
 def reset_stats(chat_id):
