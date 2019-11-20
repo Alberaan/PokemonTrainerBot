@@ -53,8 +53,13 @@ def renderBotonesAyuda(my_keyboard, lines):
     
     buttons = []
     
+    cont = 0
     for line in lines:
         buttons.append(InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1]))
+        cont += 1
+        if con > 1:
+            my_keyboard.append(buttons)
+            cont = 0
             
     my_keyboard.append(buttons)
     
