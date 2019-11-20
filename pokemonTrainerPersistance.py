@@ -5,7 +5,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 def get_engine():
     url = os.getenv("DATABASE_URL")
     engine = create_engine(url)
-    db = scoped_session(sessionmaker(bind=engine))
+    #db = scoped_session(sessionmaker(bind=engine))
 
     return engine
    
