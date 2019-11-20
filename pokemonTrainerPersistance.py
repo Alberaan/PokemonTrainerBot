@@ -62,13 +62,13 @@ def get_table_by_name(name):
 
     return meta.tables[name]
 
-def get_stats():
+def get_stats(myChatId):
     create_table()
     engine = get_engine()
     stats = []
 
     tableToSelect = get_table_by_name("stats")
-    query = tableToSelect.select()
+    query = tableToSelect.select().where(chat_id==myChatId)
 
     conn = engine.connect()
     results = conn.execute(query)
