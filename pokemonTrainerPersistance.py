@@ -7,7 +7,7 @@ def get_engine():
     engine = create_engine(url)
     #db = scoped_session(sessionmaker(bind=engine))
 
-    engine.dispose()
+    return engine
    
 def delete_tables():
     engine = get_engine()
