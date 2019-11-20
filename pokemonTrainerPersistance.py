@@ -14,6 +14,7 @@ def delete_tables():
 
     sql = 'DROP TABLE IF EXISTS stats;'
     result = engine.execute(sql)
+    result.close()
 
 def create_table():
     engine = get_engine()
@@ -54,6 +55,7 @@ def insert_new_stats(newChatId):
         result = conn.execute(ins)
     except exc.IntegrityError:
         pass
+    result.close()
 
 def get_table_by_name(name):
     engine = get_engine()
@@ -77,6 +79,7 @@ def get_stats_from_db(myChatId):
     for row in results:
         text += str(row) + "\n"
     
+    result.close()
     return text
 
 def list_tables():
@@ -110,6 +113,7 @@ def update_stats(myChatId, value1, value2, rightOrWrong):
 
     query1 = "UPDATE stats set " + value2.lower() +" = " + value2.lower() + " + " + quantityToChange + " where chat_id = " + str(myChatId)
     result = engine.execute(query1)
+    result.close()
 
 def delete_my_stats(myChatId):
     engine = get_engine()
@@ -117,4 +121,4 @@ def delete_my_stats(myChatId):
     query = stats.delete().where(stats.c.chat_id==myChatId)
     result = engine.execute(query)
     result = insert_new_stats(myChatId)
-    engine.close()
+    result.close()
