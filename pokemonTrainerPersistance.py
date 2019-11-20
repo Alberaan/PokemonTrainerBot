@@ -114,7 +114,7 @@ def update_stats(myChatId, value1, value2, rightOrWrong):
         insert_new_stats(myChatId)
         query1 = "UPDATE stats set " + value1.lower() +" = " + value1.lower() + " + " + quantityToChange + " where chat_id = " + str(myChatId)
         result = engine.execute(query1)
-        result.close()
+        engine.dispose()
 
     query1 = "UPDATE stats set " + value2.lower() +" = " + value2.lower() + " + " + quantityToChange + " where chat_id = " + str(myChatId)
     result = engine.execute(query1)
