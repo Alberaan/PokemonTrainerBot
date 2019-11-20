@@ -22,6 +22,9 @@ tablaEfectividades =[
     [0, 1, 1, 1, 1, 0.5, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 1],
     [0.5, 1, 2, 1, 0.5, 1, 1, 1, 1, 2, 1, 2, 1, 0.5, 1, 1, 1, 1]
 ]
+
+def get_stats(chat_id):
+    return get_stats_from_db(chat_id)
     
 def reset_stats(chat_id):
     delete_my_stats(chat_id)
