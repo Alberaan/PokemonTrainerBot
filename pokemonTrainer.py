@@ -24,7 +24,18 @@ tablaEfectividades =[
 ]
 
 def get_stats(chat_id):
-    return get_stats_from_db(chat_id)
+    text = "Estadísticas de aciertos:\n"
+    stats = get_stats_from_db(chat_id)
+    cont = 0
+    
+    for stat in stats:
+        if cont = 0:
+            pass
+        else:
+            text += getTypeByIndex(cont) + ": " + stat + "\n"
+        cont +=1
+    
+    return text
     
 def reset_stats(chat_id):
     delete_my_stats(chat_id)
