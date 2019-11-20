@@ -52,13 +52,18 @@ def getIndexByType(myType):
 def getEffectiveness(attacker, defender):
     return tablaEfectividades[attacker][defender]
 
-def getEfectividadesByTipo(tipo):
-    texto = "Las efectividades de " + tipo + " son:\n"
+def getEfectividadesByTipo(tipo, rol):
+    texto = "Las efectividades de " + tipo + " como " + rol + " son:\n"
     indexTipo = getIndexByType(tipo)
-    efectividadesAtacante = tablaEfectividades[indexTipo]
+    if "atacante" in rol:
+        efectividades = tablaEfectividades[indexTipo]
+    if "defensor" in rol:
+        efectividades = []
+        for index in range(0, len(types)-1):
+            efectividades.append(tablaEfectividades[index][indexTipo])
     
     cont = 0
-    for efectividad in efectividadesAtacante:
+    for efectividad in efectividades:
         if efectividad != 1:
             defensor = getTypeByIndex(cont)
             texto += defensor + ": " + str(efectividad) + "\n"
@@ -66,11 +71,11 @@ def getEfectividadesByTipo(tipo):
             
     return texto
     
-def getTypes():
+def getTypes(rol):
     texto = "Elige un tipo de Pokémon:\n"
     
     for type in types:
-        texto += "<botontipo>/efectividades " + type + "\n"
+        texto += "<botontipo>/efectividades " + type + rol"\n"
     
     return texto
         
