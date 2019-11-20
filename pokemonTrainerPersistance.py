@@ -68,7 +68,7 @@ def get_stats_from_db(myChatId):
     stats = []
 
     tableToSelect = get_table_by_name("stats")
-    query = tableToSelect.select().where(chat_id==myChatId)
+    query = tableToSelect.select().where(tableToSelect.c.chat_id==myChatId)
 
     conn = engine.connect()
     results = conn.execute(query)
