@@ -60,11 +60,11 @@ def insert_new_stats(newChatId):
 
 def get_table_by_name(name):
     engine = get_engine()
-    meta = MetaData(engine)
+    meta = MetaData()
     meta.reflect(bind=engine)
 
     returnTable = meta.tables[name]
-    #engine.dispose()
+    engine.dispose()
     return returnTable
 
 def get_stats_from_db(myChatId):
@@ -82,6 +82,7 @@ def get_stats_from_db(myChatId):
     for row in results:
         text += str(row) + "\n"
     
+    conn.close()
     engine.dispose()
     return text
 
@@ -105,9 +106,11 @@ def update_stats(myChatId, value1, value2, rightOrWrong):
     stats = get_table_by_name("stats")
 
     engine = get_engine()
+    connection = engine.connect()
 
     query1 = "UPDATE stats set " + value1.lower() +" = " + value1.lower() + " + " + quantityToChange + " where chat_id = " + str(myChatId)
-    result = engine.execute(query1)
+    result = connection.execute(query1)
+    connection.close()
     engine.dispose()
 
     if result.rowcount == 0:
