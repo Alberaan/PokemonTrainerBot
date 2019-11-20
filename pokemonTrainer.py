@@ -27,7 +27,7 @@ def get_stats(chat_id):
     text = "Estadísticas de aciertos:\n"
     stats = get_stats_from_db(chat_id)
     cont = -1
-    
+    print(type(stats))
     for stat in stats.replace(" ", ""),replace("(", "").replace(")","").split(","):
         print(type(stat))
         if cont == -1:
