@@ -75,7 +75,7 @@ def get_stats_from_db(myChatId):
 
     text = ""
     for row in results:
-        text += row + "\n"
+        text += str(row) + "\n"
     
     return text
 
