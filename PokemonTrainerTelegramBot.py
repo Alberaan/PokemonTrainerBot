@@ -129,7 +129,9 @@ def processCommand(text, chat_id):
         return getEfectividadesByTipo(text.replace("/efectividades ", ""))
     if "/help" in command:
         return printHelp()
-    if "/resetstats" in commad:
+    if "/stats" in command:
+        return get_stats(chat_id)
+    if "/resetstats" in command:
         return reset_stats(chat_id)
     else:
         return printHelp()
