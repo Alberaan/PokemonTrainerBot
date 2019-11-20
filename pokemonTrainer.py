@@ -75,7 +75,7 @@ def getTypes(rol):
     texto = "Elige un tipo de Pokémon:\n"
     
     for type in types:
-        texto += "<botontipo>/efectividades " + type + rol"\n"
+        texto += "<botontipo>/efectividades " + type + rol + "\n"
     
     return texto
         
