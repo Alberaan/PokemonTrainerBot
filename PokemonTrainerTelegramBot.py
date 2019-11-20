@@ -11,7 +11,8 @@ import re
 def printHelp():
     texto = "Bienvenido al entrenador de entrenadores Pokémon. Estos son los ejercicios disponibles:\n"
     texto += "<botonayuda>Quiz /quiz\n"
-    texto += "<botonayuda>Efectividades atacante /tipos\n"
+    texto += "<botonayuda>Atacante /atacante\n"
+    texto += "<botonayuda>Defensor /defensor\n"
     texto += "<botonayuda>Stats /stats\n"
     texto += "<botonayuda>Reset stats /resetstats\n"
     
@@ -131,8 +132,10 @@ def processCommand(text, chat_id):
         return hacerPregunta()
     if "/evaluar" in command:
         return procesarRespuesta(text.replace("/evaluar ", ""), chat_id)    
-    if "/tipos" in command:
-        return getTypes()
+    if "/atacante" in command:
+        return getTypes(atacante)
+    if "/defensor" in command:
+        return getTypes(defensor)
     if "/efectividades" in command:
         return getEfectividadesByTipo(text.replace("/efectividades ", ""))
     if "/help" in command:
