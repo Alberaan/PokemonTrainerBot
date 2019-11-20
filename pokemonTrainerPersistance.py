@@ -64,7 +64,7 @@ def get_table_by_name(name):
     meta.reflect(bind=engine)
 
     returnTable = meta.tables[name]
-    engine.dispose()
+    #engine.dispose()
     return returnTable
 
 def get_stats_from_db(myChatId):
