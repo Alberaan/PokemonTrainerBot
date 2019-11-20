@@ -28,13 +28,19 @@ def get_stats(chat_id):
     stats = get_stats_from_db(chat_id)
     cont = -1
     
+    minType = "Acero"
+    minTypeValue = 100000
+    
     for stat in stats.replace(" ", "").replace("(", "").replace(")","").split(","):
         if cont == -1:
             pass
         else:
+            if int(stat) < minTypeValue:
+                minType = getTypeByIndex(cont)
+                minTypeValue = int(stat)
             text += getTypeByIndex(cont) + ": " + stat + "\n"
         cont +=1
-    
+    text += "\n\nDebes mejorar "+ minType + "\n"
     return text
     
 def reset_stats(chat_id):
