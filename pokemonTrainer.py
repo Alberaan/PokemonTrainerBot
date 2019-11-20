@@ -1,4 +1,5 @@
 from random import randint
+from pokemonTrainerPersistance import *
 
 types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
 tablaEfectividades =[
@@ -22,6 +23,10 @@ tablaEfectividades =[
     [0.5, 1, 2, 1, 0.5, 1, 1, 1, 1, 2, 1, 2, 1, 0.5, 1, 1, 1, 1]
 ]
     
+def reset_stats(chat_id):
+    delete_my_stats(chat_id)
+    return "Stats reseted"
+
 def getTypeByIndex(myIndex):
 
     #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
