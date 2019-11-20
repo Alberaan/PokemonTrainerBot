@@ -43,7 +43,7 @@ def get_stats(chat_id):
         else:
             if int(stat) != 0:
                 total += abs(int(stat))
-            if stat > 0:
+            if int(stat) > 0:
                 totalPositives += abs(int(stat))
                 
             if int(stat) < minTypeValue:
