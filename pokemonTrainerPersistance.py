@@ -116,3 +116,4 @@ def delete_my_stats(myChatId):
     stats = get_table_by_name("stats")
     query = stats.delete().where(stats.c.chat_id==myChatId)
     result = engine.execute(query)
+    result = insert_new_stats(myChatId)
