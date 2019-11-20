@@ -137,7 +137,7 @@ def processCommand(text, chat_id):
     if "/defensor" in command:
         return getTypes("defensor")
     if "/efectividades" in command:
-        return getEfectividadesByTipo(text.replace("/efectividades ", ""))
+        return getEfectividadesByTipo(text.replace("/efectividades ", "").split(" ")[0], text.replace("/efectividades ", "").split(" ")[1])
     if "/help" in command:
         return printHelp()
     if "/stats" in command:
