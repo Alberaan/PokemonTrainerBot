@@ -62,7 +62,7 @@ def get_table_by_name(name):
 
     return meta.tables[name]
 
-def get_stats(myChatId):
+def get_stats_from_db(myChatId):
     create_table()
     engine = get_engine()
     stats = []
