@@ -73,8 +73,11 @@ def get_stats(myChatId):
     conn = engine.connect()
     results = conn.execute(query)
 
+    text = ""
     for row in results:
-        print(row)
+        text += row + "\n"
+    
+    return text
 
 def list_tables():
     engine = get_engine()
