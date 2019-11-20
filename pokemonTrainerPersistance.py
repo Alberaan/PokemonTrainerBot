@@ -7,14 +7,14 @@ def get_engine():
     engine = create_engine(url)
     #db = scoped_session(sessionmaker(bind=engine))
 
-    return engine
+    engine.dispose()
    
 def delete_tables():
     engine = get_engine()
 
     sql = 'DROP TABLE IF EXISTS stats;'
     result = engine.execute(sql)
-    result.close()
+    engine.dispose()
 
 def create_table():
     engine = get_engine()
@@ -42,6 +42,7 @@ def create_table():
         Column("volador", Integer) 
         )
     meta.create_all(engine)
+    engine.dispose()
 
 def insert_new_stats(newChatId):
     engine = get_engine()
@@ -55,13 +56,14 @@ def insert_new_stats(newChatId):
         result = conn.execute(ins)
     except exc.IntegrityError:
         pass
-    result.close()
+    engine.dispose()
 
 def get_table_by_name(name):
     engine = get_engine()
     meta = MetaData()
     meta.reflect(bind=engine)
 
+    engine.dispose()
     return meta.tables[name]
 
 def get_stats_from_db(myChatId):
@@ -79,7 +81,7 @@ def get_stats_from_db(myChatId):
     for row in results:
         text += str(row) + "\n"
     
-    results.close()
+    engine.dispose()
     return text
 
 def list_tables():
@@ -105,7 +107,7 @@ def update_stats(myChatId, value1, value2, rightOrWrong):
 
     query1 = "UPDATE stats set " + value1.lower() +" = " + value1.lower() + " + " + quantityToChange + " where chat_id = " + str(myChatId)
     result = engine.execute(query1)
-    result.close()
+    engine.dispose()
 
     if result.rowcount == 0:
         insert_new_stats(myChatId)
@@ -115,7 +117,7 @@ def update_stats(myChatId, value1, value2, rightOrWrong):
 
     query1 = "UPDATE stats set " + value2.lower() +" = " + value2.lower() + " + " + quantityToChange + " where chat_id = " + str(myChatId)
     result = engine.execute(query1)
-    result.close()
+    engine.dispose()
 
 def delete_my_stats(myChatId):
     engine = get_engine()
@@ -123,4 +125,4 @@ def delete_my_stats(myChatId):
     query = stats.delete().where(stats.c.chat_id==myChatId)
     result = engine.execute(query)
     result = insert_new_stats(myChatId)
-    result.close()
+    engine.dispose()
