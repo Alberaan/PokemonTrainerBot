@@ -28,7 +28,7 @@ def get_stats(chat_id):
     stats = get_stats_from_db(chat_id)
     cont = -1
     print(type(stats))
-    for stat in stats.replace(" ", ""),replace("(", "").replace(")","").split(","):
+    for stat in stats.replace(" ", "").replace("(", "").replace(")","").split(","):
         print(type(stat))
         if cont == -1:
             pass
