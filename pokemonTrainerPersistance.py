@@ -79,7 +79,7 @@ def get_stats_from_db(myChatId):
     for row in results:
         text += str(row) + "\n"
     
-    result.close()
+    results.close()
     return text
 
 def list_tables():
