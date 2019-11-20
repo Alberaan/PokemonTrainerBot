@@ -27,37 +27,17 @@ def get_stats(chat_id):
     text = "Estadísticas de aciertos:\n"
     stats = get_stats_from_db(chat_id)
     cont = -1
-    
-    minType = "Acero"
-    minTypeValue = 100000
-    
-    maxType = "Acero"
-    maxTypeValue = -100000
-    
-    totalPositives = 0
     total = 0
     
     for stat in stats.replace(" ", "").replace("(", "").replace(")","").split(","):
         if cont == -1:
             pass
         else:
-            if int(stat) != 0:
-                total += abs(int(stat))
-            if int(stat) > 0:
-                totalPositives += abs(int(stat))
-                
-            if int(stat) < minTypeValue:
-                minType = getTypeByIndex(cont)
-                minTypeValue = int(stat)
-            
-            if int(stat) > maxTypeValue:
-                maxType = getTypeByIndex(cont)
-                maxTypeValue = int(stat)
-            
+            total += int(stat)
             text += getTypeByIndex(cont) + ": " + stat + "\n"
         cont +=1
     text += "\nTu mejor es: " + maxType +"\nTu peor es: "+ minType + "\n"
-    text += "Porcentaje de aciertos: " + str(totalPositives/total*100) + "\n"
+    text += "Puntuación: " + str(total) + "\n"
     return text
     
 def reset_stats(chat_id):
