@@ -14,7 +14,7 @@ def printHelp():
     texto += "<botonayuda>Atacante /atacante\n"
     texto += "<botonayuda>Defensor /defensor\n"
     texto += "<botonayuda>Stats /stats\n"
-    texto += "<botonayuda>Reset stats /resetstats\n"
+    texto += "<botonayuda>Resetstats /resetstats\n"
     
     return texto
 
@@ -54,15 +54,9 @@ def renderBotonesAyuda(my_keyboard, lines):
     
     buttons = []
     
-    cont = 0
     for line in lines:
-        buttons.append(InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1]))
-        cont += 1
-        if cont > 1:
-            my_keyboard.append(buttons)
-            cont = 0
-            buttons = []
-            
+        my_keyboard.append(InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1]))
+                    
     my_keyboard.append(buttons)
     
     return my_keyboard  
