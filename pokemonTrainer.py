@@ -93,7 +93,7 @@ def textoPregunta(pregunta):
 
     return texto
     
-def procesarRespuesta(texto):
+def procesarRespuesta(texto, my_chatid):
     atacante = texto.split(" ")[0]
     defensor = texto.split(" ")[1]
     elegida = texto.split(" ")[2]
@@ -101,6 +101,8 @@ def procesarRespuesta(texto):
     efectividad = getEffectiveness(getIndexByType(atacante), getIndexByType(defensor))
 
     if str(efectividad) == str(elegida):
+        update_stats(my_chatid, atacante, defensor, "right")
         return "Correcto!\n" + hacerPregunta()
     else:
+        update_stats(my_chatid, atacante, defensor, "wrong")
         return "Error, la efectividad es " + str(efectividad) + "\n" + hacerPregunta()
