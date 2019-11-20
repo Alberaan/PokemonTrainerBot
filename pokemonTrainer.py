@@ -26,10 +26,10 @@ tablaEfectividades =[
 def get_stats(chat_id):
     text = "Estadísticas de aciertos:\n"
     stats = get_stats_from_db(chat_id)
-    cont = 0
+    cont = -1
     
     for stat in stats:
-        if cont == 0:
+        if cont == -1:
             pass
         else:
             text += getTypeByIndex(cont) + ": " + stat + "\n"
