@@ -60,7 +60,7 @@ def insert_new_stats(newChatId):
 
 def get_table_by_name(name):
     engine = get_engine()
-    meta = MetaData()
+    meta = MetaData(engine)
     meta.reflect(bind=engine)
 
     returnTable = meta.tables[name]
