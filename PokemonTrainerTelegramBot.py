@@ -96,13 +96,13 @@ def sendData(chat_id, bot, response):
 
 def on_callback_query(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
-    response = processCommand(query_data)
+    response = processCommand(query_data, from_id)
     sendData(from_id, bot, response)
 
 def on_chat_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if content_type == 'text':
-        response = processCommand(msg["text"])
+        response = processCommand(msg["text"], chat_id)
     else:
         response = "error"
 
@@ -114,7 +114,7 @@ def on_inline_query(msg):
 def on_chosen_inline_result(msg):
     pass
 
-def processCommand(text):
+def processCommand(text, chat_id):
     command = text.split(" ")[0].lower()
     print(command)
     if command == "/start":
@@ -129,6 +129,8 @@ def processCommand(text):
         return getEfectividadesByTipo(text.replace("/efectividades ", ""))
     if "/help" in command:
         return printHelp()
+    if "/resetstats" in commad:
+        return reset_stats(chat_id)
     else:
         return printHelp()
 
