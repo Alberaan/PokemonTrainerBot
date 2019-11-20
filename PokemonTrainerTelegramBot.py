@@ -133,9 +133,9 @@ def processCommand(text, chat_id):
     if "/evaluar" in command:
         return procesarRespuesta(text.replace("/evaluar ", ""), chat_id)    
     if "/atacante" in command:
-        return getTypes(atacante)
+        return getTypes("atacante")
     if "/defensor" in command:
-        return getTypes(defensor)
+        return getTypes("defensor")
     if "/efectividades" in command:
         return getEfectividadesByTipo(text.replace("/efectividades ", ""))
     if "/help" in command:
