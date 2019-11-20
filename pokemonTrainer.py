@@ -32,6 +32,7 @@ def get_stats(chat_id):
         if cont == -1:
             pass
         else:
+            print(getTypeByIndex(cont) + ": " + stat)
             text += getTypeByIndex(cont) + ": " + stat + "\n"
         cont +=1
     
@@ -42,8 +43,6 @@ def reset_stats(chat_id):
     return "Stats reseted"
 
 def getTypeByIndex(myIndex):
-
-    #types = ["Acero", "Agua", "Bicho", "Dragón", "Eléctrico", "Fantasma", "Fuego", "Hada", "Hielo", "Lucha", "Normal", "Planta", "Psíquico", "Roca", "Siniestro", "Tierra", "Veneno", "Volador"]
     return types[myIndex]
 
 def getIndexByType(myType):
