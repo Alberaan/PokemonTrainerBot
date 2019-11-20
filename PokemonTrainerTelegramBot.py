@@ -122,7 +122,7 @@ def processCommand(text, chat_id):
     if "/quiz" in command:
         return hacerPregunta()
     if "/evaluar" in command:
-        return procesarRespuesta(text.replace("/evaluar ", ""))    
+        return procesarRespuesta(text.replace("/evaluar ", ""), chat_id)    
     if "/tipos" in command:
         return getTypes()
     if "/efectividades" in command:
