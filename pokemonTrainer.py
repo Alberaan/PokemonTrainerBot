@@ -59,7 +59,7 @@ def getEfectividadesByTipo(tipo, rol):
         efectividades = tablaEfectividades[indexTipo]
     if "defensor" in rol:
         efectividades = []
-        for index in range(0, len(types)-1):
+        for index in range(0, len(types)):
             efectividades.append(tablaEfectividades[index][indexTipo])
     
     cont = 0
