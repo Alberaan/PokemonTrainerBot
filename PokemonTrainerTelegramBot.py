@@ -60,6 +60,7 @@ def renderBotonesAyuda(my_keyboard, lines):
         if cont > 1:
             my_keyboard.append(buttons)
             cont = 0
+            buttons = []
             
     my_keyboard.append(buttons)
     
