@@ -29,7 +29,7 @@ def get_stats(chat_id):
     cont = 0
     
     for stat in stats:
-        if cont = 0:
+        if cont == 0:
             pass
         else:
             text += getTypeByIndex(cont) + ": " + stat + "\n"
