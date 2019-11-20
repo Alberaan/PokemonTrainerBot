@@ -11,7 +11,9 @@ import re
 def printHelp():
     texto = "Bienvenido al entrenador de entrenadores Pokémon. Estos son los ejercicios disponibles:\n"
     texto += "<botonayuda>Quiz /quiz\n"
-    texto += "<botonayuda>Efectividades /tipos\n"
+    texto += "<botonayuda>Efectividades atacante /tipos\n"
+    texto += "<botonayuda>Stats /stats\n"
+    texto += "<botonayuda>Reset stats /resetstats\n"
     
     return texto
 
