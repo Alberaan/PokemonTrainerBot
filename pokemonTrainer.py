@@ -29,6 +29,7 @@ def get_stats(chat_id):
     cont = -1
     
     for stat in stats:
+        print(type(stat))
         if cont == -1:
             pass
         else:
