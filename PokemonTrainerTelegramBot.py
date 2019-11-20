@@ -55,7 +55,7 @@ def renderBotonesAyuda(my_keyboard, lines):
     buttons = []
     
     for line in lines:
-        my_keyboard.append(InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1]))
+        my_keyboard.append([InlineKeyboardButton(text=str(line.split(" ")[0]), callback_data=line.split(" ")[1])])
                     
     my_keyboard.append(buttons)
     
