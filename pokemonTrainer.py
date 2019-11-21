@@ -29,9 +29,9 @@ def get_stats(chat_id):
     cont = -1
     total = 0
     maxType = "Acero"
-    maxTypeValue = 10000
+    maxTypeValue = -10000
     minType = "Acero"
-    minTypeValue = -10000
+    minTypeValue = 10000
     
     for stat in stats.replace(" ", "").replace("(", "").replace(")","").split(","):
         if cont == -1:
