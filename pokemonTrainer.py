@@ -53,8 +53,8 @@ def get_stats(chat_id):
         cont +=1
     
     media = int(total/elementos)
-    text += "\nTu mejor es: " + maxType + "(desviación de la media: " + str(maxTypeValue - media) + ")\n"
-    text += "Tu peor es: "+ minType + "(desviación de la media: " + str(minTypeValue - media)+ ")\n"
+    text += "\nTu mejor es: " + maxType + " (" + str(maxTypeValue - media) + " de la media)\n"
+    text += "Tu peor es: "+ minType + " (" + str(minTypeValue - media)+ " de la media)\n"
     text += "Diferencia entre mejor y peor: " + str(maxTypeValue - minTypeValue) + "\n"
     return text
     
