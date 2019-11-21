@@ -28,6 +28,7 @@ def get_stats(chat_id):
     stats = get_stats_from_db(chat_id)
     cont = -1
     total = 0
+    elementos = 0
     maxType = "Acero"
     maxTypeValue = -10000
     minType = "Acero"
@@ -37,6 +38,9 @@ def get_stats(chat_id):
         if cont == -1:
             pass
         else:
+            total += int(stat)
+            elementos += 1
+            
             if int(stat) > maxTypeValue:
                 maxType = getTypeByIndex(cont)
                 maxTypeValue = int(stat)
@@ -48,7 +52,10 @@ def get_stats(chat_id):
             total += int(stat)
             text += getTypeByIndex(cont) + ": " + stat + "\n"
         cont +=1
-    text += "\nTu mejor es: " + maxType +"\nTu peor es: "+ minType + "\n"
+    
+    media = int(total/elementos)
+    text += "\nTu mejor es: " + maxType + "(desviación de la media: " + str(maxTypeValue - media) + ")\n"
+    text += "Tu peor es: "+ minType + "(desviación de la media: " + str(minTypeValue - media)+ ")\n"
     text += "Puntuación: " + str(total) + "\n"
     return text
     
